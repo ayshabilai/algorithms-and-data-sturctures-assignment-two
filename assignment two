@@ -1,0 +1,44 @@
+import winsound
+import os
+
+def merge_sort(arr, depth=0):
+    if len(arr) > 1:
+        mid = len(arr) // 2
+        L = arr[:mid]
+        R = arr[mid:]
+
+        merge_sort(L, depth + 1)
+        merge_sort(R, depth + 1)
+
+        i = j = k = 0
+
+        while i < len(L) and j < len(R):
+            if L[i] < R[j]:
+                arr[k] = L[i]
+                i += 1
+            else:
+                arr[k] = R[j]
+                j += 1
+            k += 1
+            winsound.Beep(1000, 100)  # Sound effect for swap
+            print(f"Depth {depth}: {arr}")
+
+        while i < len(L):
+            arr[k] = L[i]
+            i += 1
+            k += 1
+            winsound.Beep(1000, 100)  # Sound effect for swap
+            print(f"Depth {depth}: {arr}")
+
+        while j < len(R):
+            arr[k] = R[j]
+            j += 1
+            k += 1
+            winsound.Beep(1000, 100)  # Sound effect for swap
+            print(f"Depth {depth}: {arr}")
+
+if __name__ == '__main__':
+    arr = [11, 1, 30, 25, 16, 29, 7, 67, 15, 18, 4, 89, 23]
+    print(f"Original array: {arr}")
+    merge_sort(arr)
+    print(f"Sorted array: {arr}")
